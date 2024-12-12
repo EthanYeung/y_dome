@@ -107,37 +107,37 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 12px;
+            background: white;
+            padding: 16px;
+            border-radius: 12px;
         }
 
         .action-card {
-            background: white;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 12px 8px;
-            text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 8px;
-            transition: all 0.3s ease;
+            text-decoration: none;
         }
 
-        .action-card:active {
-            transform: scale(0.98);
-        }
-
-        .action-card i {
-            font-size: 24px;
-            color: var(--primary-color);
-            background: var(--primary-light);
-            padding: 10px;
+        .action-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             border-radius: 10px;
+            color: var(--primary-color);
         }
 
-        .action-card h3 {
+        .action-icon i {
+            font-size: 24px;
+        }
+
+        .action-name {
             font-size: 13px;
             color: var(--text-primary);
-            font-weight: 500;
+            text-align: center;
         }
 
         .section {
@@ -333,14 +333,6 @@
     </style>
 </head>
 <body>
-    <div class="header">
-        <a href="#" class="back-button">
-            <i class="ri-arrow-left-s-line"></i>
-        </a>
-        <span class="title">居民健康档案</span>
-        <i class="ri-more-2-fill"></i>
-    </div>
-
     <div class="profile-card">
         <div class="avatar">
             <i class="ri-user-3-line"></i>
@@ -357,20 +349,28 @@
 
     <div class="quick-actions">
         <a href="health-record.html" class="action-card">
-            <i class="ri-folder-user-line"></i>
-            <h3>健康档案</h3>
+            <div class="action-icon">
+                <i class="ri-file-user-line"></i>
+            </div>
+            <span class="action-name">健康档案</span>
         </a>
         <a href="key-targets.html" class="action-card">
-            <i class="ri-focus-3-line"></i>
-            <h3>关键目标</h3>
+            <div class="action-icon">
+                <i class="ri-focus-3-line"></i>
+            </div>
+            <span class="action-name">关键目标</span>
         </a>
         <a href="medical-reports.html" class="action-card">
-            <i class="ri-file-list-3-line"></i>
-            <h3>辅检报告</h3>
+            <div class="action-icon">
+                <i class="ri-file-list-3-line"></i>
+            </div>
+            <span class="action-name">辅检报告</span>
         </a>
         <a href="home-monitoring.html" class="action-card">
-            <i class="ri-heart-pulse-line"></i>
-            <h3>居家监测</h3>
+            <div class="action-icon">
+                <i class="ri-heart-pulse-line"></i>
+            </div>
+            <span class="action-name">居家监测</span>
         </a>
     </div>
 

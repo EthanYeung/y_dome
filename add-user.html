@@ -222,7 +222,7 @@
 
     <button type="submit" class="submit-btn" onclick="handleSubmit()">提交</button>
 
-    <div id="toast" class="toast">保存成功</div>
+    <div id="toast" class="toast">档案完善成功</div>
 
     <script>
         function handleSubmit() {
@@ -230,11 +230,10 @@
             const toast = document.getElementById('toast');
             toast.style.display = 'block';
             
-            // 2秒后隐藏提示并跳转
+            // 1秒后关闭浏览器窗口
             setTimeout(() => {
-                toast.style.display = 'none';
-                window.location.href = 'index.html'; // 跳转到居民详情页
-            }, 2000);
+                window.close();
+            }, 1000);
         }
     </script>
 </body>
