@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>添加用户</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+    <style>
+        :root {
+            --primary-color: #00C389;
+            --primary-light: #E8F9F4;
+            --border-color: #E8F3F0;
+            --background-color: #F5F7FA;
+            --text-primary: #2C3E50;
+            --text-secondary: #7F8C9D;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-primary);
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: white;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .back-button {
+            font-size: 20px;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .title {
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .form-container {
+            padding: 20px 16px;
+            background: white;
+            margin: 16px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--text-primary);
+            font-size: 15px;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 15px;
+            color: var(--text-primary);
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .form-control::placeholder {
+            color: #BDC3C7;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        .relation-group {
+            margin-top: 8px;
+        }
+
+        .relation-group label {
+            margin-bottom: 12px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 12px;
+        }
+
+        .radio-button {
+            flex: 1;
+            position: relative;
+        }
+
+        .radio-button input {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .radio-button label {
+            display: block;
+            padding: 10px;
+            text-align: center;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .radio-button input:checked + label {
+            background: var(--primary-light);
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .submit-btn {
+            display: block;
+            width: calc(100% - 32px);
+            padding: 14px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            margin: 32px 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
+
+        .toast {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 15px;
+            display: none;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="#" class="back-button">
+            <i class="ri-arrow-left-s-line"></i>
+        </a>
+        <span class="title">添加用户</span>
+        <div style="width: 24px;"></div>
+    </div>
+
+    <form id="addUserForm" class="form-container">
+        <div class="form-group">
+            <label>姓名</label>
+            <input type="text" class="form-control" placeholder="请输入姓名" required>
+        </div>
+
+        <div class="form-group">
+            <label>手机号</label>
+            <input type="tel" class="form-control" placeholder="请输入手机号" required>
+        </div>
+
+        <div class="form-group">
+            <label>身份证号</label>
+            <input type="text" class="form-control" placeholder="请输入身份证号" required>
+        </div>
+
+        <div class="form-group">
+            <label>联系电话</label>
+            <input type="tel" class="form-control" placeholder="请输入联系电话">
+        </div>
+
+        <div class="form-group relation-group">
+            <label>关系</label>
+            <div class="radio-group">
+                <div class="radio-button">
+                    <input type="radio" id="self" name="relation" value="self" checked>
+                    <label for="self">本人</label>
+                </div>
+                <div class="radio-button">
+                    <input type="radio" id="family" name="relation" value="family">
+                    <label for="family">家属</label>
+                </div>
+                <div class="radio-button">
+                    <input type="radio" id="other" name="relation" value="other">
+                    <label for="other">其他</label>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <button type="submit" class="submit-btn" onclick="handleSubmit()">提交</button>
+
+    <div id="toast" class="toast">保存成功</div>
+
+    <script>
+        function handleSubmit() {
+            // 显示提示
+            const toast = document.getElementById('toast');
+            toast.style.display = 'block';
+            
+            // 2秒后隐藏提示并跳转
+            setTimeout(() => {
+                toast.style.display = 'none';
+                window.location.href = 'index.html'; // 跳转到居民详情页
+            }, 2000);
+        }
+    </script>
+</body>
+</html> 

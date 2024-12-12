@@ -277,6 +277,59 @@
             align-items: center;
             margin-bottom: 8px;
         }
+
+        .record-date {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .date-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            gap: 4px;
+        }
+
+        .date-tag i {
+            font-size: 14px;
+        }
+
+        .date-tag.urgent {
+            background: #FFF1F0;
+            color: #FF4D4F;
+            border: 1px solid #FFCCC7;
+        }
+
+        .date-tag.pending {
+            background: #F6FFED;
+            color: #52C41A;
+            border: 1px solid #B7EB8F;
+        }
+
+        .date-full {
+            color: var(--text-primary);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .task-meta {
+            display: flex;
+            gap: 16px;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        .time-left {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
     </style>
 </head>
 <body>
@@ -344,8 +397,11 @@
         <div class="timeline">
             <div class="record-item active">
                 <div class="record-date">
-                    <span class="date-tag urgent">今日待办</span>
-                    2024年5月15日
+                    <span class="date-tag urgent">
+                        <i class="ri-alarm-warning-line"></i>
+                        今日待办
+                    </span>
+                    <span class="date-full">2024年5月15日 周三</span>
                 </div>
                 <h4>公卫随访上传</h4>
                 <p>需要完成年度随访记录上传</p>
@@ -356,14 +412,17 @@
                     </span>
                     <span class="task-status">
                         <i class="ri-time-line"></i>
-                        剩余2天
+                        <span class="time-left">剩余2天</span>
                     </span>
                 </div>
             </div>
             <div class="record-item">
                 <div class="record-date">
-                    <span class="date-tag">待完成</span>
-                    2024年6月1日
+                    <span class="date-tag pending">
+                        <i class="ri-calendar-todo-line"></i>
+                        待完成
+                    </span>
+                    <span class="date-full">2024年6月1日 周六</span>
                 </div>
                 <h4>血压复查</h4>
                 <p>定期血压监测复查，上次测量：135/85 mmHg</p>
@@ -374,14 +433,17 @@
                     </span>
                     <span class="task-status">
                         <i class="ri-calendar-check-line"></i>
-                        15天后
+                        <span class="time-left">15天后</span>
                     </span>
                 </div>
             </div>
             <div class="record-item">
                 <div class="record-date">
-                    <span class="date-tag">待完成</span>
-                    2024年7月10日
+                    <span class="date-tag pending">
+                        <i class="ri-calendar-todo-line"></i>
+                        待完成
+                    </span>
+                    <span class="date-full">2024年7月10日 周三</span>
                 </div>
                 <h4>糖尿病随访</h4>
                 <p>三个月一次的常规随访，需要空腹测血糖</p>
@@ -392,7 +454,7 @@
                     </span>
                     <span class="task-status">
                         <i class="ri-calendar-check-line"></i>
-                        55天后
+                        <span class="time-left">55天后</span>
                     </span>
                 </div>
             </div>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resident Detail</title>
+    <link href="https://cdn.remixicon.org/releases/v5.15.0/remixicon.css" rel="stylesheet">
+    <style>
+        /* 现有样式保持不变... */
+        
+        .date-tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 8px;
+            background: var(--primary-light);
+            color: var(--primary-color);
+        }
+
+        .date-tag.urgent {
+            background: #FFE4E4;
+            color: #FF4D4F;
+        }
+
+        .task-meta {
+            display: flex;
+            gap: 16px;
+            margin-top: 8px;
+        }
+
+        .task-type, .task-status {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .task-type i, .task-status i {
+            font-size: 16px;
+        }
+
+        .record-item {
+            padding: 16px 16px 16px 48px;
+            transition: background-color 0.2s;
+        }
+
+        .record-item:hover {
+            background-color: var(--background-color);
+        }
+
+        .record-item p {
+            margin-bottom: 4px;
+        }
+
+        .record-date {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="section">
+        <div class="section-header">
+            <h3>待办事项</h3>
+            <a href="#" class="view-all">查看全部</a>
+        </div>
+        <div class="timeline">
+            <div class="record-item active">
+                <div class="record-date">
+                    <span class="date-tag urgent">今日待办</span>
+                    2024年5月15日
+                </div>
+                <h4>公卫随访上传</h4>
+                <p>需要完成年度随访记录上传</p>
+                <div class="task-meta">
+                    <span class="task-type">
+                        <i class="ri-file-upload-line"></i>
+                        常规随访
+                    </span>
+                    <span class="task-status">
+                        <i class="ri-time-line"></i>
+                        剩余2天
+                    </span>
+                </div>
+            </div>
+            <div class="record-item">
+                <div class="record-date">
+                    <span class="date-tag">待完成</span>
+                    2024年6月1日
+                </div>
+                <h4>血压复查</h4>
+                <p>定期血压监测复查，上次测量：135/85 mmHg</p>
+                <div class="task-meta">
+                    <span class="task-type">
+                        <i class="ri-heart-pulse-line"></i>
+                        高血压管理
+                    </span>
+                    <span class="task-status">
+                        <i class="ri-calendar-check-line"></i>
+                        15天后
+                    </span>
+                </div>
+            </div>
+            <div class="record-item">
+                <div class="record-date">
+                    <span class="date-tag">待完成</span>
+                    2024年7月10日
+                </div>
+                <h4>糖尿病随访</h4>
+                <p>三个月一次的常规随访，需要空腹测血糖</p>
+                <div class="task-meta">
+                    <span class="task-type">
+                        <i class="ri-test-tube-line"></i>
+                        糖尿病管理
+                    </span>
+                    <span class="task-status">
+                        <i class="ri-calendar-check-line"></i>
+                        55天后
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
