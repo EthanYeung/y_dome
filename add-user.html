@@ -3,17 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>添加用户</title>
+    <title>完善资料</title>
 
-    <!-- 添加微信分享相关的元数据 -->
+    <!-- 微信分享相关的元数据 -->
     <meta property="og:title" content="请完善档案">
     <meta property="og:description" content="完善档案后健康管家可以更好的为你提供健康管理服务">
-    <meta property="og:image" content="https://cdn.example.com/health-manager.jpg">
+    <meta property="og:image" content="https://example.com/images/health-profile.jpg">
     
     <!-- 微信分享专用标签 -->
     <meta itemprop="name" content="请完善档案">
     <meta itemprop="description" content="完善档案后健康管家可以更好的为你提供健康管理服务">
-    <meta itemprop="image" content="https://cdn.example.com/health-manager.jpg">
+    <meta itemprop="image" content="https://example.com/images/health-profile.jpg">
+
+    <!-- 微信 JS-SDK 配置 -->
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+    <script>
+        // 配置微信分享
+        wx.config({
+            debug: false,
+            appId: '', // 你的微信公众号 appId
+            timestamp: '', // 时间戳
+            nonceStr: '', // 随机字符串
+            signature: '', // 签名
+            jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData']
+        });
+
+        wx.ready(function () {
+            // 分享给朋友
+            wx.updateAppMessageShareData({ 
+                title: '请完善档案',
+                desc: '完善档案后健康管家可以更好的为你提供健康管理服务',
+                link: window.location.href,
+                imgUrl: 'https://example.com/images/health-profile.jpg',
+                success: function () {
+                    // 设置成功
+                }
+            });
+
+            // 分享到朋友圈
+            wx.updateTimelineShareData({ 
+                title: '请完善档案',
+                link: window.location.href,
+                imgUrl: 'https://example.com/images/health-profile.jpg',
+                success: function () {
+                    // 设置成功
+                }
+            });
+        });
+    </script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
     <style>
@@ -187,7 +224,7 @@
         <a href="#" class="back-button">
             <i class="ri-arrow-left-s-line"></i>
         </a>
-        <span class="title">添加用户</span>
+        <span class="title">完善资料</span>
         <div style="width: 24px;"></div>
     </div>
 
