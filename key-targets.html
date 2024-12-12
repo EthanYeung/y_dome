@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关键目标</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+    <style>
+        /* 基础样式变量 */
+        :root {
+            --primary-color: #00C389;
+            --primary-light: #E8F9F4;
+            --border-color: #E8F3F0;
+            --background-color: #F5F7FA;
+            --text-primary: #2C3E50;
+            --text-secondary: #7F8C9D;
+            --warning-color: #FA8C16;
+            --warning-light: #FFF7E6;
+            --danger-color: #FF4D4F;
+            --danger-light: #FFF1F0;
+            --success-color: #52C41A;
+            --success-light: #F6FFED;
+        }
+
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: var(--background-color);
+        }
+
+        .header {
+            background: white;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        /* 患者信息卡片 */
+        .patient-card {
+            margin: 16px;
+            padding: 16px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .patient-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .patient-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 24px;
+            background: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+        }
+
+        .patient-details h3 {
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .patient-details p {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .diagnosis-tags {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .diagnosis-tag {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            background: var(--primary-light);
+            color: var(--primary-color);
+        }
+
+        /* 目标指标部分 */
+        .target-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin: 16px;
+        }
+
+        .target-card {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .target-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .target-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .target-status {
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 12px;
+        }
+
+        .target-status.normal {
+            background: var(--success-light);
+            color: var(--success-color);
+        }
+
+        .target-status.warning {
+            background: var(--warning-light);
+            color: var(--warning-color);
+        }
+
+        .target-value {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 8px 0;
+        }
+
+        .target-range {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .target-trend {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* 趋势分析部分 */
+        .trend-section {
+            margin: 16px;
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .trend-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .trend-title {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .trend-tabs {
+            display: flex;
+            gap: 12px;
+        }
+
+        .trend-tab {
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            background: var(--background-color);
+        }
+
+        .trend-tab.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .chart-container {
+            height: 200px;
+            margin: 16px 0;
+            background: var(--background-color);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+        }
+
+        /* 医嘱建议部分 */
+        .advice-section {
+            margin: 16px;
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .advice-header {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .advice-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .advice-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            background: var(--background-color);
+            border-radius: 8px;
+        }
+
+        .advice-icon {
+            color: var(--primary-color);
+        }
+
+        .advice-content {
+            flex: 1;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* 添加新的样式 */
+        .patient-info-bar {
+            background: white;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .patient-basic {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            display: flex;
+            gap: 16px;
+        }
+
+        .diagnosis-tags {
+            display: flex;
+            gap: 8px;
+        }
+
+        .diagnosis-tag {
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            background: var(--primary-light);
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html" class="back-button">
+            <i class="ri-arrow-left-s-line"></i>
+        </a>
+        <span class="title">关键目标 - 黄昌盛</span>
+        <div style="width: 24px;"></div>
+    </div>
+
+    <div class="patient-info-bar">
+        <div class="patient-basic">
+            <span class="patient-age">男 | 32岁</span>
+            <span class="patient-team">郑晓玲团队</span>
+        </div>
+        <div class="diagnosis-tags">
+            <span class="diagnosis-tag">高血压 2级</span>
+            <span class="diagnosis-tag">2型糖尿病</span>
+        </div>
+    </div>
+
+    <div class="target-grid">
+        <div class="target-card">
+            <div class="target-header">
+                <span class="target-title">血压</span>
+                <span class="target-status normal">达标</span>
+            </div>
+            <div class="target-value">135/85 mmHg</div>
+            <div class="target-range">目标：≤140/90 mmHg</div>
+            <div class="target-trend">
+                <i class="ri-arrow-down-line"></i>
+                <span>较上次下降 5/3 mmHg</span>
+            </div>
+        </div>
+
+        <div class="target-card">
+            <div class="target-header">
+                <span class="target-title">空腹血糖</span>
+                <span class="target-status warning">偏高</span>
+            </div>
+            <div class="target-value">7.2 mmol/L</div>
+            <div class="target-range">目标：4.4-7.0 mmol/L</div>
+            <div class="target-trend">
+                <i class="ri-arrow-up-line"></i>
+                <span>较上次上升 0.7 mmol/L</span>
+            </div>
+        </div>
+
+        <div class="target-card">
+            <div class="target-header">
+                <span class="target-title">BMI</span>
+                <span class="target-status warning">超重</span>
+            </div>
+            <div class="target-value">26.3 kg/m²</div>
+            <div class="target-range">目标：18.5-24.9 kg/m²</div>
+            <div class="target-trend">
+                <i class="ri-subtract-line"></i>
+                <span>较上次无变化</span>
+            </div>
+        </div>
+
+        <div class="target-card">
+            <div class="target-header">
+                <span class="target-title">监测完成率</span>
+                <span class="target-status normal">良好</span>
+            </div>
+            <div class="target-value">90%</div>
+            <div class="target-range">本月应测 30 次，已完成 27 次</div>
+            <div class="target-trend">
+                <i class="ri-arrow-up-line"></i>
+                <span>较上月提升 5%</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="trend-section">
+        <div class="trend-header">
+            <div class="trend-title">趋势分析</div>
+            <div class="trend-tabs">
+                <span class="trend-tab active">近7天</span>
+                <span class="trend-tab">近30天</span>
+                <span class="trend-tab">近90天</span>
+            </div>
+        </div>
+        <div class="chart-container">
+            趋势图表区域
+        </div>
+    </div>
+
+    <div class="advice-section">
+        <div class="advice-header">医嘱建议</div>
+        <div class="advice-list">
+            <div class="advice-item">
+                <i class="ri-alert-line advice-icon"></i>
+                <div class="advice-content">
+                    血糖控制不佳，建议调整二甲双胍用量，从每日2次增加至3次，每次0.5g。
+                </div>
+            </div>
+            <div class="advice-item">
+                <i class="ri-heart-pulse-line advice-icon"></i>
+                <div class="advice-content">
+                    ��压控制达标，继续保持现有用药方案，每日测量2次。
+                </div>
+            </div>
+            <div class="advice-item">
+                <i class="ri-walk-line advice-icon"></i>
+                <div class="advice-content">
+                    建议加强运动，每周进行3-4次有氧运动，每次30-40分钟。
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

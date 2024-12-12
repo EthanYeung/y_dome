@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>辅检报告</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+    <style>
+        /* 基础变量 */
+        :root {
+            --primary-color: #00C389;
+            --primary-light: #E8F9F4;
+            --border-color: #E8F3F0;
+            --background-color: #F5F7FA;
+            --text-primary: #2C3E50;
+            --text-secondary: #7F8C9D;
+            --warning-color: #FA8C16;
+            --warning-light: #FFF7E6;
+            --danger-color: #FF4D4F;
+            --danger-light: #FFF1F0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        /* 页头样式 */
+        .header {
+            background: white;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .back-button {
+            font-size: 20px;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .title {
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        /* 报告列表样式 */
+        .report-tabs {
+            display: flex;
+            padding: 16px 16px 0;
+            gap: 16px;
+            background: white;
+            position: sticky;
+            top: 56px;
+            z-index: 99;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tab-item {
+            padding: 8px 16px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            border-radius: 16px;
+            cursor: pointer;
+        }
+
+        .tab-item.active {
+            background: var(--primary-light);
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .report-filter {
+            padding: 12px 16px;
+            background: white;
+            display: flex;
+            gap: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .filter-button {
+            padding: 6px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            background: white;
+        }
+
+        .report-list {
+            padding: 16px;
+        }
+
+        .report-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            margin-bottom: 16px;
+        }
+
+        .report-header {
+            padding: 16px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .report-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .report-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-light);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 20px;
+        }
+
+        .report-info {
+            flex: 1;
+        }
+
+        .report-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+        }
+
+        .report-meta {
+            font-size: 13px;
+            color: var(--text-secondary);
+            display: flex;
+            gap: 12px;
+        }
+
+        .report-status {
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .report-status.abnormal {
+            background: var(--danger-light);
+            color: var(--danger-color);
+        }
+
+        .report-status.normal {
+            background: var(--primary-light);
+            color: var(--primary-color);
+        }
+
+        .report-preview {
+            padding: 12px 16px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            background: var(--background-color);
+        }
+
+        .report-actions {
+            padding: 12px 16px;
+            display: flex;
+            gap: 12px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .action-button {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html" class="back-button">
+            <i class="ri-arrow-left-s-line"></i>
+        </a>
+        <span class="title">辅检报告</span>
+        <div style="width: 24px;"></div>
+    </div>
+
+    <div class="report-tabs">
+        <div class="tab-item active">全部</div>
+        <div class="tab-item">检验</div>
+        <div class="tab-item">检查</div>
+        <div class="tab-item">其他</div>
+    </div>
+
+    <div class="report-filter">
+        <button class="filter-button">最近三个月</button>
+        <button class="filter-button">检查类型</button>
+        <button class="filter-button">状态</button>
+    </div>
+
+    <div class="report-list">
+        <div class="report-card">
+            <div class="report-header">
+                <div class="report-title">
+                    <div class="report-icon">
+                        <i class="ri-test-tube-line"></i>
+                    </div>
+                    <div class="report-info">
+                        <div class="report-name">血常规检查</div>
+                        <div class="report-meta">
+                            <span>2024-05-10</span>
+                            <span>检验科</span>
+                        </div>
+                    </div>
+                </div>
+                <span class="report-status abnormal">异常</span>
+            </div>
+            <div class="report-preview">
+                白细胞计数：11.2×10⁹/L（偏高）
+            </div>
+            <div class="report-actions">
+                <a href="#" class="action-button">
+                    <i class="ri-file-list-line"></i>
+                    查看详情
+                </a>
+                <a href="#" class="action-button">
+                    <i class="ri-history-line"></i>
+                    历史记录
+                </a>
+            </div>
+        </div>
+
+        <div class="report-card">
+            <div class="report-header">
+                <div class="report-title">
+                    <div class="report-icon">
+                        <i class="ri-heart-2-line"></i>
+                    </div>
+                    <div class="report-info">
+                        <div class="report-name">心电图检查</div>
+                        <div class="report-meta">
+                            <span>2024-05-08</span>
+                            <span>心电图室</span>
+                        </div>
+                    </div>
+                </div>
+                <span class="report-status normal">正常</span>
+            </div>
+            <div class="report-preview">
+                窦性心律，心率76次/分
+            </div>
+            <div class="report-actions">
+                <a href="#" class="action-button">
+                    <i class="ri-file-list-line"></i>
+                    查看详情
+                </a>
+            </div>
+        </div>
+
+        <div class="report-card">
+            <div class="report-header">
+                <div class="report-title">
+                    <div class="report-icon">
+                        <i class="ri-microscope-line"></i>
+                    </div>
+                    <div class="report-info">
+                        <div class="report-name">生化全套</div>
+                        <div class="report-meta">
+                            <span>2024-05-05</span>
+                            <span>检验科</span>
+                        </div>
+                    </div>
+                </div>
+                <span class="report-status abnormal">异常</span>
+            </div>
+            <div class="report-preview">
+                血糖：7.2 mmol/L（偏高），总胆固醇：5.8 mmol/L（偏高）
+            </div>
+            <div class="report-actions">
+                <a href="#" class="action-button">
+                    <i class="ri-file-list-line"></i>
+                    查看详情
+                </a>
+                <a href="#" class="action-button">
+                    <i class="ri-history-line"></i>
+                    历史记录
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

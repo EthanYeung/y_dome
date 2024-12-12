@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>健康档案</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+    <style>
+        /* 基础变量 */
+        :root {
+            --primary-color: #00C389;
+            --primary-light: #E8F9F4;
+            --border-color: #E8F3F0;
+            --background-color: #F5F7FA;
+            --text-primary: #2C3E50;
+            --text-secondary: #7F8C9D;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        /* 页头样式 */
+        .header {
+            background: white;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .back-button {
+            font-size: 20px;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .title {
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .record-section {
+            margin: 16px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .section-header {
+            padding: 16px;
+            border-bottom: 1px solid var(--border-color);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .record-item {
+            padding: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .record-item:last-child {
+            border-bottom: none;
+        }
+
+        .record-label {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .record-value {
+            color: var(--text-primary);
+            font-size: 16px;
+        }
+
+        .update-time {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 8px;
+        }
+
+        .tag.warning {
+            background: #FFF7E6;
+            color: #FA8C16;
+            border: 1px solid #FFD591;
+        }
+
+        .tag.success {
+            background: #F6FFED;
+            color: #52C41A;
+            border: 1px solid #B7EB8F;
+        }
+
+        .badge {
+            background: var(--primary-light);
+            color: var(--primary-color);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+        }
+
+        .badge.warning {
+            background: #FFF7E6;
+            color: #FA8C16;
+        }
+
+        .medicine-list {
+            padding: 8px 16px;
+        }
+
+        .medicine-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .medicine-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-light);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+        }
+
+        .medicine-info {
+            flex: 1;
+        }
+
+        .medicine-name {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .medicine-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .medicine-period {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .status-tag {
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .status-tag.active {
+            background: var(--primary-light);
+            color: var(--primary-color);
+        }
+
+        .allergy-list {
+            padding: 8px 16px;
+        }
+
+        .allergy-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 12px 0;
+        }
+
+        .allergy-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .allergy-icon.warning {
+            background: #FFF7E6;
+            color: #FA8C16;
+        }
+
+        .allergy-name {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .allergy-reaction {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html" class="back-button">
+            <i class="ri-arrow-left-s-line"></i>
+        </a>
+        <span class="title">健康档案</span>
+        <div style="width: 24px;"></div>
+    </div>
+
+    <div class="record-section">
+        <div class="section-header">基本信息</div>
+        <div class="record-item">
+            <div class="record-label">姓名</div>
+            <div class="record-value">黄昌盛</div>
+        </div>
+        <div class="record-item">
+            <div class="record-label">性别</div>
+            <div class="record-value">男</div>
+        </div>
+        <div class="record-item">
+            <div class="record-label">年龄</div>
+            <div class="record-value">32岁</div>
+        </div>
+    </div>
+
+    <div class="record-section">
+        <div class="section-header">既往病史</div>
+        <div class="record-item">
+            <div class="record-label">高血压</div>
+            <div class="record-value">确诊时间：2022年3月</div>
+        </div>
+        <div class="record-item">
+            <div class="record-label">糖尿病</div>
+            <div class="record-value">确诊时间：2023年5月</div>
+        </div>
+    </div>
+
+    <div class="record-section">
+        <div class="section-header">
+            <span>生活方式评估</span>
+            <span class="update-time">更新于：2024-05-01</span>
+        </div>
+        <div class="record-item">
+            <div class="record-label">吸烟情况</div>
+            <div class="record-value">
+                <span class="tag warning">需要干预</span>
+                每日20支，已吸烟10年
+            </div>
+        </div>
+        <div class="record-item">
+            <div class="record-label">饮酒情况</div>
+            <div class="record-value">偶尔饮酒，每周1-2次</div>
+        </div>
+        <div class="record-item">
+            <div class="record-label">运动习惯</div>
+            <div class="record-value">
+                <span class="tag success">良好</span>
+                每周运动3-4次，每次30分钟以上
+            </div>
+        </div>
+        <div class="record-item">
+            <div class="record-label">饮食习惯</div>
+            <div class="record-value">
+                <span class="tag warning">需要改善</span>
+                重油重盐，蔬菜摄入不足
+            </div>
+        </div>
+    </div>
+
+    <div class="record-section">
+        <div class="section-header">
+            <span>家族病史</span>
+            <i class="ri-edit-line"></i>
+        </div>
+        <div class="record-item">
+            <div class="record-label">父亲</div>
+            <div class="record-value">高血压、糖尿病</div>
+        </div>
+        <div class="record-item">
+            <div class="record-label">母亲</div>
+            <div class="record-value">高血压</div>
+        </div>
+    </div>
+
+    <div class="record-section">
+        <div class="section-header">
+            <span>用药记录</span>
+            <span class="badge">3种在用</span>
+        </div>
+        <div class="medicine-list">
+            <div class="medicine-item">
+                <div class="medicine-icon">
+                    <i class="ri-medicine-bottle-line"></i>
+                </div>
+                <div class="medicine-info">
+                    <div class="medicine-name">缬沙坦胶囊</div>
+                    <div class="medicine-desc">80mg 每日1次 早餐后服用</div>
+                    <div class="medicine-period">服用时间：2023-06-01 至今</div>
+                </div>
+                <div class="medicine-status">
+                    <span class="status-tag active">在用</span>
+                </div>
+            </div>
+            <div class="medicine-item">
+                <div class="medicine-icon">
+                    <i class="ri-medicine-bottle-line"></i>
+                </div>
+                <div class="medicine-info">
+                    <div class="medicine-name">二甲双胍片</div>
+                    <div class="medicine-desc">0.5g 每日2次 餐后服用</div>
+                    <div class="medicine-period">服用时间：2023-05-15 至今</div>
+                </div>
+                <div class="medicine-status">
+                    <span class="status-tag active">在用</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="record-section">
+        <div class="section-header">
+            <span>过敏史</span>
+            <span class="badge warning">有过敏</span>
+        </div>
+        <div class="allergy-list">
+            <div class="allergy-item">
+                <div class="allergy-icon warning">
+                    <i class="ri-alert-line"></i>
+                </div>
+                <div class="allergy-info">
+                    <div class="allergy-name">青霉素类药物</div>
+                    <div class="allergy-reaction">皮疹、瘙痒</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
