@@ -107,11 +107,18 @@
         }
 
         .report-card {
-            margin-bottom: 8px;
+            margin-bottom: 12px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            overflow: hidden;
         }
 
         .report-header {
-            padding: 12px;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
         }
 
         .report-icon {
@@ -162,7 +169,9 @@
             padding: 12px 16px;
             font-size: 14px;
             color: var(--text-secondary);
-            background: var(--background-color);
+            background: var(--primary-light);
+            margin: 0 16px;
+            border-radius: 8px;
         }
 
         .report-actions {
@@ -170,6 +179,7 @@
             display: flex;
             gap: 12px;
             border-top: 1px solid var(--border-color);
+            background: white;
         }
 
         .action-button {
@@ -189,13 +199,91 @@
                 margin: 8px;
             }
         }
+
+        @media screen and (max-width: 361px) {
+            /* 调整标签栏 */
+            .report-tabs {
+                padding: 12px 8px 0;
+                gap: 8px;
+            }
+
+            .tab-item {
+                padding: 6px 12px;
+                font-size: 13px;
+            }
+
+            /* 调整筛选栏 */
+            .report-filter {
+                padding: 8px;
+                gap: 6px;
+            }
+
+            .filter-button {
+                padding: 4px 8px;
+                font-size: 12px;
+            }
+
+            /* 调整报告卡片 */
+            .report-card {
+                margin: 8px;
+            }
+
+            .report-header {
+                padding: 12px;
+            }
+
+            .report-preview {
+                padding: 10px 12px;
+            }
+
+            .report-actions {
+                padding: 10px 12px;
+            }
+
+            /* 调整图标大小 */
+            .report-icon {
+                width: 28px;
+                height: 28px;
+            }
+
+            /* 调整文字大小 */
+            .report-name {
+                font-size: 14px;
+            }
+
+            .report-meta {
+                font-size: 12px;
+            }
+        }
+
+        /* 添加到每个页面的 style 标签中 */
+        .float-back {
+            position: fixed;
+            left: 16px;
+            top: 16px;
+            width: 32px;
+            height: 32px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .float-back i {
+            font-size: 20px;
+        }
     </style>
 </head>
 <body>
+    <a href="javascript:history.back()" class="float-back">
+        <i class="ri-arrow-left-s-line"></i>
+    </a>
     <header class="header">
-        <a href="#" class="back-button">
-            <i class="ri-arrow-left-line"></i>
-        </a>
         <h1 class="title">辅检报告</h1>
     </header>
 
@@ -230,7 +318,7 @@
                 <span class="report-status abnormal">异常</span>
             </div>
             <div class="report-preview">
-                白细胞计数��11.2×10⁹/L（偏高）
+                白细胞计数11.2×10⁹/L（偏高）
             </div>
             <div class="report-actions">
                 <a href="#" class="action-button">
@@ -307,6 +395,18 @@
         // 实现标签切换
         // 实现筛选功能
         // 添加详情页面跳转
+    </script>
+
+    <script>
+        function isWxWork() {
+            var ua = navigator.userAgent.toLowerCase();
+            return ua.indexOf('wxwork') !== -1;
+        }
+
+        var backButton = document.querySelector('.float-back');
+        if (backButton) {
+            backButton.style.display = isWxWork() ? 'flex' : 'none';
+        }
     </script>
 </body>
 </html> 

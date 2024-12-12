@@ -330,9 +330,101 @@
             color: var(--primary-color);
             font-weight: 500;
         }
+
+        @media screen and (max-width: 361px) {
+            .profile-card {
+                margin: 8px;
+                padding: 12px;
+                gap: 12px;
+            }
+
+            .quick-actions {
+                margin: 8px;
+                padding: 12px 8px;
+                gap: 8px;
+            }
+
+            .section {
+                margin: 8px;
+            }
+
+            .section-header {
+                padding: 12px;
+            }
+
+            .record-item {
+                padding: 12px;
+            }
+
+            .timeline::before {
+                left: 16px;
+            }
+
+            .record-item {
+                padding-left: 40px;
+            }
+
+            .record-item::before {
+                left: 12px;
+            }
+
+            .action-icon {
+                width: 32px;
+                height: 32px;
+            }
+
+            .action-icon i {
+                font-size: 18px;
+            }
+
+            .action-name {
+                font-size: 12px;
+            }
+
+            .profile-card {
+                padding: 12px;
+            }
+
+            .avatar {
+                width: 48px;
+                height: 48px;
+            }
+
+            .info h2 {
+                font-size: 16px;
+            }
+
+            .info p {
+                font-size: 13px;
+            }
+        }
+
+        .float-back {
+            position: fixed;
+            left: 16px;
+            top: 16px;
+            width: 32px;
+            height: 32px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .float-back i {
+            font-size: 20px;
+        }
     </style>
 </head>
 <body>
+    <a href="javascript:history.back()" class="float-back">
+        <i class="ri-arrow-left-s-line"></i>
+    </a>
     <div class="profile-card">
         <div class="avatar">
             <i class="ri-user-3-line"></i>
@@ -460,5 +552,17 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function isWxWork() {
+            var ua = navigator.userAgent.toLowerCase();
+            return ua.indexOf('wxwork') !== -1;
+        }
+
+        var backButton = document.querySelector('.float-back');
+        if (backButton) {
+            backButton.style.display = isWxWork() ? 'flex' : 'none';
+        }
+    </script>
 </body>
 </html> 

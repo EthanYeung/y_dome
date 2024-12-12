@@ -100,15 +100,16 @@
 
         /* 目标指标部分 */
         .target-grid {
-            grid-template-columns: 1fr;
-            gap: 8px;
-            margin: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 12px;
         }
 
         .target-card {
             background: white;
             border-radius: 12px;
-            padding: 12px;
+            padding: 16px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
 
@@ -129,6 +130,7 @@
             font-size: 12px;
             padding: 2px 8px;
             border-radius: 12px;
+            margin-left: auto;
         }
 
         .target-status.normal {
@@ -145,12 +147,14 @@
             font-size: 24px;
             font-weight: 600;
             margin: 8px 0;
+            line-height: 1.2;
         }
 
         .target-range {
             font-size: 13px;
             color: var(--text-secondary);
             margin-bottom: 8px;
+            line-height: 1.4;
         }
 
         .target-trend {
@@ -277,9 +281,72 @@
             background: var(--primary-light);
             color: var(--primary-color);
         }
+
+        @media screen and (max-width: 361px) {
+            /* 调整患者信息栏 */
+            .patient-info-bar {
+                padding: 10px 12px;
+            }
+
+            /* 调整目标卡片 */
+            .target-grid {
+                margin: 8px;
+                gap: 8px;
+            }
+
+            .target-card {
+                padding: 12px;
+            }
+
+            /* 调整图表区域 */
+            .trend-section {
+                margin: 8px;
+                padding: 12px;
+            }
+
+            .chart-container {
+                height: 160px;
+                margin: 8px 0;
+            }
+
+            /* 调整建议区域 */
+            .advice-section {
+                margin: 8px;
+                padding: 12px;
+            }
+
+            .advice-item {
+                padding: 10px;
+            }
+        }
+
+        /* 添加到每个页面的 style 标签中 */
+        .float-back {
+            position: fixed;
+            left: 16px;
+            top: 16px;
+            width: 32px;
+            height: 32px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .float-back i {
+            font-size: 20px;
+        }
     </style>
 </head>
 <body>
+    <a href="javascript:history.back()" class="float-back">
+        <i class="ri-arrow-left-s-line"></i>
+    </a>
     <div class="patient-info-bar">
         <div class="patient-basic">
             <span class="patient-age">男 | 32岁</span>
@@ -287,7 +354,7 @@
         </div>
         <div class="diagnosis-tags">
             <span class="diagnosis-tag">高血压 2级</span>
-            <span class="diagnosis-tag">2型糖尿病</span>
+            <span class="diagnosis-tag">2型糖��病</span>
         </div>
     </div>
 
@@ -382,5 +449,17 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function isWxWork() {
+            var ua = navigator.userAgent.toLowerCase();
+            return ua.indexOf('wxwork') !== -1;
+        }
+
+        var backButton = document.querySelector('.float-back');
+        if (backButton) {
+            backButton.style.display = isWxWork() ? 'flex' : 'none';
+        }
+    </script>
 </body>
 </html> 

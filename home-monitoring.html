@@ -249,9 +249,73 @@
             font-size: 14px;
             font-weight: 500;
         }
+
+        @media screen and (max-width: 361px) {
+            /* 调整监测卡片 */
+            .monitoring-card {
+                margin: 8px;
+            }
+
+            .card-header {
+                padding: 12px;
+            }
+
+            /* 调整数值显示 */
+            .latest-value {
+                padding: 12px;
+            }
+
+            .value-number {
+                font-size: 20px;
+            }
+
+            /* 调整图表区域 */
+            .chart-container {
+                height: 160px;
+                margin: 12px 8px;
+            }
+
+            /* 调整记录列表 */
+            .record-list {
+                padding: 0 12px;
+            }
+
+            .record-item {
+                padding: 10px 0;
+            }
+
+            /* 调整底部 */
+            .monitoring-footer {
+                padding: 12px;
+            }
+        }
+
+        .float-back {
+            position: fixed;
+            left: 16px;
+            top: 16px;
+            width: 32px;
+            height: 32px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .float-back i {
+            font-size: 20px;
+        }
     </style>
 </head>
 <body>
+    <a href="javascript:history.back()" class="float-back">
+        <i class="ri-arrow-left-s-line"></i>
+    </a>
     <div class="monitoring-card">
         <div class="card-header">
             <div class="header-title">

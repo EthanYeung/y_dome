@@ -216,9 +216,33 @@
             font-size: 14px;
             color: var(--text-secondary);
         }
+
+        .float-back {
+            position: fixed;
+            left: 16px;
+            top: 16px;
+            width: 32px;
+            height: 32px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .float-back i {
+            font-size: 20px;
+        }
     </style>
 </head>
 <body>
+    <a href="javascript:history.back()" class="float-back">
+        <i class="ri-arrow-left-s-line"></i>
+    </a>
     <div class="record-section">
         <div class="section-header">基本信息</div>
         <div class="record-item">
@@ -253,7 +277,7 @@
             <span class="update-time">更新于：2024-05-01</span>
         </div>
         <div class="record-item">
-            <div class="record-label">吸���情况</div>
+            <div class="record-label">吸烟情况</div>
             <div class="record-value">
                 <span class="tag warning">需要干预</span>
                 每日20支，已吸烟10年
@@ -319,7 +343,7 @@
                 </div>
                 <div class="medicine-info">
                     <div class="medicine-name">二甲双胍片</div>
-                    <div class="medicine-desc">0.5g ��日2次 餐后服用</div>
+                    <div class="medicine-desc">0.5g 每日2次 餐后服用</div>
                     <div class="medicine-period">服用时间：2023-05-15 至今</div>
                 </div>
                 <div class="medicine-status">
