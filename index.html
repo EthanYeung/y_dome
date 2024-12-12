@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>居民健康档案</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+    <style>
+        :root {
+            --primary-color: #00C389;
+            --primary-light: #E8F9F4;
+            --border-color: #E8F3F0;
+            --background-color: #F5F7FA;
+            --text-primary: #2C3E50;
+            --text-secondary: #7F8C9D;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        .header {
+            background: white;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .back-button {
+            font-size: 20px;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .title {
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .profile-card {
+            margin: 16px;
+            padding: 20px;
+            background: white;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            gap: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 24px;
+        }
+
+        .info h2 {
+            font-size: 18px;
+            margin-bottom: 6px;
+            color: var(--text-primary);
+        }
+
+        .info p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .tags {
+            display: flex;
+            gap: 8px;
+        }
+
+        .tag {
+            padding: 4px 12px;
+            background: var(--primary-light);
+            color: var(--primary-color);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .quick-actions {
+            margin: 16px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .action-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px 12px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .action-card:active {
+            transform: scale(0.98);
+        }
+
+        .action-card i {
+            font-size: 24px;
+            color: var(--primary-color);
+            background: var(--primary-light);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .action-card h3 {
+            font-size: 13px;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .section {
+            margin: 16px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .section-header {
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            background: white;
+        }
+
+        .section-header h3 {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .view-all {
+            color: var(--primary-color);
+            font-size: 14px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 16px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-color);
+        }
+
+        .record-item {
+            position: relative;
+            padding: 12px 16px 12px 48px;
+        }
+
+        .record-item::before {
+            content: '';
+            position: absolute;
+            left: 16px;
+            top: 24px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            border: 2px solid white;
+            box-shadow: 0 0 0 2px var(--primary-light);
+        }
+
+        .record-item.active::before {
+            background: white;
+            border: 2px solid var(--primary-color);
+        }
+
+        .record-date {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+
+        .record-item h4 {
+            font-size: 15px;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+        }
+
+        .record-item p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="#" class="back-button">
+            <i class="ri-arrow-left-s-line"></i>
+        </a>
+        <span class="title">居民健康档案</span>
+        <i class="ri-more-2-fill"></i>
+    </div>
+
+    <div class="profile-card">
+        <div class="avatar">
+            <i class="ri-user-3-line"></i>
+        </div>
+        <div class="info">
+            <h2>黄昌盛 男 32岁</h2>
+            <p>电话：182****2334 | 郑晓玲团队</p>
+            <div class="tags">
+                <span class="tag">高血压</span>
+                <span class="tag">糖尿病</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="quick-actions">
+        <div class="action-card">
+            <i class="ri-folder-user-line"></i>
+            <h3>健康档案</h3>
+        </div>
+        <div class="action-card">
+            <i class="ri-focus-3-line"></i>
+            <h3>关键目标</h3>
+        </div>
+        <div class="action-card">
+            <i class="ri-file-list-3-line"></i>
+            <h3>辅检报告</h3>
+        </div>
+        <div class="action-card">
+            <i class="ri-heart-pulse-line"></i>
+            <h3>居家监测</h3>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            <h3>居民动态</h3>
+            <a href="#" class="view-all">查看全部</a>
+        </div>
+        <div class="record-item">
+            <h4>2024年10月31日</h4>
+            <p>就诊诊断：上呼吸道感染</p>
+        </div>
+        <div class="record-item">
+            <h4>2024年9月15日</h4>
+            <p>血压监测：135/85 mmHg</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            <h3>待办事项</h3>
+            <a href="#" class="view-all">查看全部</a>
+        </div>
+        <div class="timeline">
+            <div class="record-item active">
+                <div class="record-date">2024年5月</div>
+                <h4>公卫随访上传</h4>
+                <p>需要完成年度随访记录上传</p>
+            </div>
+            <div class="record-item">
+                <div class="record-date">2024年6月</div>
+                <h4>血压复查</h4>
+                <p>定期血压监测复查</p>
+            </div>
+            <div class="record-item">
+                <div class="record-date">2024年7月</div>
+                <h4>糖尿病随访</h4>
+                <p>三个月一次的常规随访</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
