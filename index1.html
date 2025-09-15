@@ -51,6 +51,14 @@
       display:flex;
       align-items:center;
       gap:20px;
+      cursor:pointer;
+      transition:transform .2s,box-shadow .2s;
+      text-decoration:none;
+      color:inherit;
+    }
+    .product-card:hover{
+      transform:translateY(-2px);
+      box-shadow:0 4px 20px rgba(0,0,0,.1);
     }
     .icon{
       flex-shrink:0;
@@ -100,7 +108,7 @@
   </div>
   <div class="list">
     <!-- 商品 1 -->
-    <div class="product-card">
+    <a class="product-card" href="https://s.tk.cn/8GJn8aQq">
       <div class="icon">
         <!-- 报销型：文档/账单图标 -->
         <svg viewBox="0 0 24 24">
@@ -119,10 +127,10 @@
         </div>
         <p class="desc">泰康在线为您提供专业的乳腺癌复发保障，报销型方案让您无忧应对医疗费用。</p>
       </div>
-    </div>
+    </a>
 
     <!-- 商品 2 -->
-    <div class="product-card">
+    <a class="product-card" href="https://s.tk.cn/yE3Xv43R">
       <div class="icon">
         <!-- 给付型：闪电/立即图标 -->
         <svg viewBox="0 0 24 24">
@@ -137,7 +145,7 @@
         </div>
         <p class="desc">泰康在线乳腺癌复发给付型保险，为您提供确诊即给付的保障，减轻经济压力。</p>
       </div>
-    </div>
+    </a>
   </div>
 </body>
 </html>
